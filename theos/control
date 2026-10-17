@@ -1,0 +1,9 @@
+Package: com.minis.amapnotweak
+Name: AmapNoTweak
+Version: 1.0.0-1
+Architecture: iphoneos-arm64
+Depends: mobilesubstrate (>= 0.9.5000) | fakeroot
+Description: 高德地图去广告+精简底栏(留首页/我的)
+Maintainer: Mini
+Author: Mini
+Section: Tweaks
