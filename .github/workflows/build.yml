@@ -8,13 +8,12 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: Randomblock1/theos-action@main
-        with:
-          theos-dir: ${{ github.workspace }}/theos-core
-      - name: Build .deb
-        working-directory: theos
+      - name: Install roothide theos (non-root)
         run: |
-          THEOS="${{ github.workspace }}/theos-core" make package
+          sudo -u runner bash -c 'bash -c "$(curl -fsSL https://raw.githubusercontent.com/roothide/theos/master/bin/install-theos)"'
+      - name: Build roothide deb
+        run: |
+          sudo -u runner bash -c 'cd theos && THEOS=/Users/runner/theos THEOS_PACKAGE_SCHEME=roothide make package'
       - uses: actions/upload-artifact@v4
         with:
           name: AmapNoTweak-deb
