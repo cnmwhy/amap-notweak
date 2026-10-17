@@ -1,0 +1,22 @@
+name: Build Tweak (deb)
+on:
+  push:
+    paths: ['theos/**', '.github/workflows/build.yml']
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Randomblock1/theos-action@master
+        with:
+          theos-dir: ${{ github.workspace }}/theos-core
+      - name: Build .deb
+        working-directory: theos
+        run: |
+          THEOS="${{ github.workspace }}/theos-core" make package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AmapNoTweak-deb
+          path: theos/packages/*.deb
+          if-no-files-found: error
