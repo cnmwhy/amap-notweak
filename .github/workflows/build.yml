@@ -8,7 +8,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: Randomblock1/theos-action@master
+      - uses: Randomblock1/theos-action@main
         with:
           theos-dir: ${{ github.workspace }}/theos-core
       - name: Build .deb
